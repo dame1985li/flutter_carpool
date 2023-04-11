@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +50,9 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
         title: Text(
-          'Complete Profile',
+          FFLocalizations.of(context).getText(
+            'mjivtdyx' /* Complete Profile */,
+          ),
           style: FlutterFlowTheme.of(context).headlineMedium,
         ),
         actions: [],
@@ -143,9 +144,13 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
               controller: _model.imageURLController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Image URL',
+                labelText: FFLocalizations.of(context).getText(
+                  'gdeg4ysm' /* Image URL */,
+                ),
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                hintText: 'Copy an avatar here...',
+                hintText: FFLocalizations.of(context).getText(
+                  '0dq4qx0m' /* Copy an avatar here... */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).bodyMedium,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -192,9 +197,13 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
               controller: _model.displayNameController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Your Name',
+                labelText: FFLocalizations.of(context).getText(
+                  'exgfog0p' /* Your Name */,
+                ),
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                hintText: 'What name do you go by?',
+                hintText: FFLocalizations.of(context).getText(
+                  'hz90n37j' /* What name do you go by? */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).bodyMedium,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -241,9 +250,13 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
               controller: _model.yourTitleController,
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Your Title',
+                labelText: FFLocalizations.of(context).getText(
+                  'lyvnoeo0' /* Your Title */,
+                ),
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                hintText: 'What do you do?',
+                hintText: FFLocalizations.of(context).getText(
+                  'kh8j1y38' /* What do you do? */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).bodyMedium,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -298,14 +311,12 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
                   createdTime: getCurrentTimestamp,
                 );
                 await currentUserReference!.update(usersUpdateData);
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NavBarPage(initialPage: 'chatMain'),
-                  ),
-                );
+
+                context.pushNamed('chatMain');
               },
-              text: 'Save Profile',
+              text: FFLocalizations.of(context).getText(
+                'qklozu0o' /* Save Profile */,
+              ),
               options: FFButtonOptions(
                 width: 230.0,
                 height: 60.0,

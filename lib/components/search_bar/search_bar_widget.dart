@@ -65,13 +65,17 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
                   ),
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search for friends...',
+                    labelText: FFLocalizations.of(context).getText(
+                      'd4lanyss' /* Search for friends... */,
+                    ),
                     labelStyle:
                         FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Lexend Deca',
                               color: Color(0xFF82878C),
                             ),
-                    hintText: 'Find your friend by na',
+                    hintText: FFLocalizations.of(context).getText(
+                      'g30k3vgv' /* Find your friend by na */,
+                    ),
                     hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0xFF95A1AC),

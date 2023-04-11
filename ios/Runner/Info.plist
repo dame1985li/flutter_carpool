@@ -16,6 +16,12 @@
 	<string>carpool</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ja</string>
+		<string>en</string>
+		<string>zh_Hans</string>
+	</array>
 
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
@@ -28,12 +34,24 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.221285397671-uu34ut2e2jj4su68hrm985pbkuu7es35</string>
+                <string>com.googleusercontent.apps.831932788025-7oitj4lc3ec4lg7iu99erk608mouus95</string>
                 
             </array>
         </dict>
 
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>carpool.com</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>carpool</string>
+        </array>
+        </dict>
     </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
 
 
 	<key>CFBundleVersion</key>
@@ -45,7 +63,13 @@
     <string>In order to take a picture or video, this app requires permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+	<key>PermissionGroupNotification</key>
+    <string>notification</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

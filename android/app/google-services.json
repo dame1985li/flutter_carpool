@@ -1,48 +1,48 @@
 {
   "project_info": {
-    "project_number": "221285397671",
-    "project_id": "chatapp-1f872",
-    "storage_bucket": "chatapp-1f872.appspot.com"
+    "project_number": "831932788025",
+    "project_id": "fluttercarpool-8fa66",
+    "storage_bucket": "fluttercarpool-8fa66.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:221285397671:android:1827d15ef4c64d10b6d782",
+        "mobilesdk_app_id": "1:831932788025:android:ab374ad2b1c71f96728ce8",
         "android_client_info": {
-          "package_name": "kaleo.chat.app"
+          "package_name": "jp.co.casio.hamura.carpool"
         }
       },
       "oauth_client": [
         {
-          "client_id": "221285397671-vb1kg4uh4qsqn9jre32mvts8bitljifs.apps.googleusercontent.com",
+          "client_id": "831932788025-b8b41a416hln27cuqip9fv8avb5j1lh5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "kaleo.chat.app",
+            "package_name": "jp.co.casio.hamura.carpool",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
           }
         },
         {
-          "client_id": "221285397671-qjkub8unhoq4fie8dgu2ur4o08p4s0bu.apps.googleusercontent.com",
+          "client_id": "831932788025-8fsa966vno3kv9758170pg4hfs60tijg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAcu3RAaR0kiASh5ihxu1KDcsraXuyvDpY"
+          "current_key": "AIzaSyBQPlKnXIhGO1Z0rRkavcOyY86h7g16H9g"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "221285397671-qjkub8unhoq4fie8dgu2ur4o08p4s0bu.apps.googleusercontent.com",
+              "client_id": "831932788025-8fsa966vno3kv9758170pg4hfs60tijg.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "221285397671-ts8o319tn4m9mu2qu5q98lvc7520rngf.apps.googleusercontent.com",
+              "client_id": "831932788025-7oitj4lc3ec4lg7iu99erk608mouus95.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "KaleoChatApp"
+                "bundle_id": "jp.co.casio.hamura.carpool"
               }
             }
           ]

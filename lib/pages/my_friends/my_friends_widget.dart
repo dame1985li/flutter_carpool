@@ -2,7 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/chat_details/chat_details_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +43,9 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primary,
         automaticallyImplyLeading: false,
         title: Text(
-          'My Team',
+          FFLocalizations.of(context).getText(
+            'ynlpmdrv' /* My Team */,
+          ),
           style: FlutterFlowTheme.of(context).displaySmall.override(
                 fontFamily: 'Lexend Deca',
                 color: FlutterFlowTheme.of(context).tertiary,
@@ -63,7 +64,7 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
                 size: 30.0,
               ),
               onPressed: () async {
-                Navigator.pop(context);
+                context.pop();
               },
             ),
           ),
@@ -137,13 +138,17 @@ class _MyFriendsWidgetState extends State<MyFriendsWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ChatDetailsWidget(
-                                      chatUser: columnUsersRecord,
+                                context.pushNamed(
+                                  'chatDetails',
+                                  queryParams: {
+                                    'chatUser': serializeParam(
+                                      columnUsersRecord,
+                                      ParamType.Document,
                                     ),
-                                  ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    'chatUser': columnUsersRecord,
+                                  },
                                 );
                               },
                               child: Row(

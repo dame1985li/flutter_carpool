@@ -90,7 +90,9 @@ class _FriendListWidgetState extends State<FriendListWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Alex Edwards',
+                            FFLocalizations.of(context).getText(
+                              'vbei0qf4' /* Alex Edwards */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
@@ -108,7 +110,9 @@ class _FriendListWidgetState extends State<FriendListWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 4.0, 0.0),
                               child: Text(
-                                '[userEmail]',
+                                FFLocalizations.of(context).getText(
+                                  'm3n8urpw' /* [userEmail] */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodySmall
                                     .override(

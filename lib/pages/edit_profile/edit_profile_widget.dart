@@ -72,7 +72,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             automaticallyImplyLeading: false,
             leading: InkWell(
               onTap: () async {
-                Navigator.pop(context);
+                context.pop();
               },
               child: Icon(
                 Icons.arrow_back_rounded,
@@ -81,7 +81,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
               ),
             ),
             title: Text(
-              'Edit Profile',
+              FFLocalizations.of(context).getText(
+                '0np90qdu' /* Edit Profile */,
+              ),
               style: FlutterFlowTheme.of(context).headlineMedium.override(
                     fontFamily: 'Lexend Deca',
                     color: FlutterFlowTheme.of(context).tertiary,
@@ -214,7 +216,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Email Address',
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      '0kos0qri' /* Email Address */,
+                                    ),
                                     labelStyle:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                     hintStyle:
@@ -282,7 +287,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Full Name',
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      'wnamd5pu' /* Full Name */,
+                                    ),
                                     labelStyle:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                     hintStyle:
@@ -349,7 +357,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Job Title',
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      '5l7tpt8u' /* Job Title */,
+                                    ),
                                     labelStyle:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                     hintStyle:
@@ -415,9 +426,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               );
                               await editProfileUsersRecord.reference
                                   .update(usersUpdateData);
-                              Navigator.pop(context);
+                              context.pop();
                             },
-                            text: 'Save Changes',
+                            text: FFLocalizations.of(context).getText(
+                              '6j3bol0g' /* Save Changes */,
+                            ),
                             options: FFButtonOptions(
                               width: 200.0,
                               height: 50.0,

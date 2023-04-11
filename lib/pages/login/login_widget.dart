@@ -3,11 +3,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
-import '/pages/forgot_password/forgot_password_widget.dart';
-import '/pages/register/register_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
@@ -92,9 +90,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                         controller: _model.emailTextController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Email Address',
+                          labelText: FFLocalizations.of(context).getText(
+                            'hjj1xrdu' /* メールアドレス */,
+                          ),
                           labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Email Address',
+                          hintText: FFLocalizations.of(context).getText(
+                            'en47izbh' /* メールアドレス */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -138,7 +140,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: FlutterFlowTheme.of(context).primaryText,
                             ),
                         keyboardType: TextInputType.emailAddress,
                         validator: _model.emailTextControllerValidator
@@ -164,9 +166,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                         controller: _model.passwordTextController,
                         obscureText: !_model.passwordVisibility,
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          labelText: FFLocalizations.of(context).getText(
+                            'aj1wwqpy' /* パスワード */,
+                          ),
                           labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Password',
+                          hintText: FFLocalizations.of(context).getText(
+                            'o2e7bqjp' /* パスワード */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -224,7 +230,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.of(context).tertiary,
+                              color: FlutterFlowTheme.of(context).primaryText,
                             ),
                         validator: _model.passwordTextControllerValidator
                             .asValidator(context),
@@ -234,19 +240,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    final user = await signInWithGoogle(context);
+                    GoRouter.of(context).prepareAuthEvent();
+
+                    final user = await signInWithEmail(
+                      context,
+                      _model.emailTextController.text,
+                      _model.passwordTextController.text,
+                    );
                     if (user == null) {
                       return;
                     }
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'chatMain'),
-                      ),
-                    );
+
+                    context.pushNamedAuth('chatMain', mounted);
                   },
-                  text: 'Log In',
+                  text: FFLocalizations.of(context).getText(
+                    'j74asd35' /* ログイン */,
+                  ),
+                  icon: FaIcon(
+                    FontAwesomeIcons.google,
+                  ),
                   options: FFButtonOptions(
                     width: 300.0,
                     height: 55.0,
@@ -276,23 +288,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Text(
-                          'Don\'t have an account?',
+                          FFLocalizations.of(context).getText(
+                            '3dc3f6ro' /* アカウント持ってない? */,
+                          ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 150),
-                              reverseDuration: Duration(milliseconds: 150),
-                              child: RegisterWidget(),
-                            ),
+                          context.pushNamed(
+                            'Register',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 150),
+                              ),
+                            },
                           );
                         },
-                        text: 'Create Account',
+                        text: FFLocalizations.of(context).getText(
+                          'pqruce81' /* アカウント作成 */,
+                        ),
                         options: FFButtonOptions(
                           width: 150.0,
                           height: 40.0,
@@ -321,14 +338,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 6.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ForgotPasswordWidget(),
-                        ),
-                      );
+                      context.pushNamed('forgotPassword');
                     },
-                    text: 'Forgot Password?',
+                    text: FFLocalizations.of(context).getText(
+                      'rdzjaarj' /* パスワード忘れた? */,
+                    ),
                     options: FFButtonOptions(
                       width: 200.0,
                       height: 55.0,
@@ -351,6 +365,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      GoRouter.of(context).prepareAuthEvent();
                       final user = await signInAnonymously(context);
                       if (user == null) {
                         return;
@@ -362,17 +377,22 @@ class _LoginWidgetState extends State<LoginWidget> {
                         userRole: 'Geek Master',
                       );
                       await currentUserReference!.update(usersUpdateData);
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.bottomToTop,
-                          duration: Duration(milliseconds: 250),
-                          reverseDuration: Duration(milliseconds: 250),
-                          child: NavBarPage(initialPage: 'chatMain'),
-                        ),
+
+                      context.pushNamedAuth(
+                        'chatMain',
+                        mounted,
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 250),
+                          ),
+                        },
                       );
                     },
-                    text: 'Continue as Guest',
+                    text: FFLocalizations.of(context).getText(
+                      'kh43te36' /* ゲスト */,
+                    ),
                     options: FFButtonOptions(
                       width: 200.0,
                       height: 55.0,

@@ -45,7 +45,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Icon(
             Icons.chevron_left_rounded,
@@ -54,7 +54,9 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
           ),
         ),
         title: Text(
-          'Forgot Password',
+          FFLocalizations.of(context).getText(
+            'ahxrlmpr' /* Forgot Password */,
+          ),
           style: FlutterFlowTheme.of(context).headlineMedium,
         ),
         actions: [],
@@ -76,9 +78,13 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 controller: _model.emailAddressController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Email Address',
+                  labelText: FFLocalizations.of(context).getText(
+                    'm9j4bap6' /* Your Email Address */,
+                  ),
                   labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                  hintText: 'Please enter a email...',
+                  hintText: FFLocalizations.of(context).getText(
+                    '6mjakzne' /* Please enter a email... */,
+                  ),
                   hintStyle: FlutterFlowTheme.of(context).bodyMedium,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
@@ -137,9 +143,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     email: _model.emailAddressController.text,
                     context: context,
                   );
-                  Navigator.pop(context);
+                  context.pop();
                 },
-                text: 'Send Reset Link',
+                text: FFLocalizations.of(context).getText(
+                  'ienxggso' /* Send Reset Link */,
+                ),
                 options: FFButtonOptions(
                   width: 230.0,
                   height: 60.0,

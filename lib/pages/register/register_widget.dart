@@ -3,9 +3,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/main.dart';
-import '/pages/complete_profile/complete_profile_widget.dart';
-import '/pages/login/login_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,9 +90,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         controller: _model.emailAddressController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: 'Email Address',
+                          labelText: FFLocalizations.of(context).getText(
+                            's6l3okkg' /* Email Address */,
+                          ),
                           labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Email Address',
+                          hintText: FFLocalizations.of(context).getText(
+                            'fhmdmwlv' /* Email Address */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -165,9 +166,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         controller: _model.passwordController,
                         obscureText: !_model.passwordVisibility,
                         decoration: InputDecoration(
-                          labelText: 'Choose Password',
+                          labelText: FFLocalizations.of(context).getText(
+                            '38ak57o1' /* Choose Password */,
+                          ),
                           labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Choose Password',
+                          hintText: FFLocalizations.of(context).getText(
+                            'p5y17yif' /* Choose Password */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -250,9 +255,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         controller: _model.confirmPasswordController,
                         obscureText: !_model.confirmPasswordVisibility,
                         decoration: InputDecoration(
-                          labelText: 'Confirm Password',
+                          labelText: FFLocalizations.of(context).getText(
+                            'dq4p83ic' /* Confirm Password */,
+                          ),
                           labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                          hintText: 'Confirm Password',
+                          hintText: FFLocalizations.of(context).getText(
+                            '6wx8vvpb' /* Confirm Password */,
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0x00000000),
@@ -320,6 +329,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    GoRouter.of(context).prepareAuthEvent();
                     if (_model.passwordController.text !=
                         _model.confirmPasswordController.text) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -348,15 +358,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         .doc(user.uid)
                         .update(usersCreateData);
 
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CompleteProfileWidget(),
-                      ),
-                      (r) => false,
-                    );
+                    context.goNamedAuth('completeProfile', mounted);
                   },
-                  text: 'Create Account',
+                  text: FFLocalizations.of(context).getText(
+                    '1sal3kj9' /* Create Account */,
+                  ),
                   options: FFButtonOptions(
                     width: 300.0,
                     height: 55.0,
@@ -386,24 +392,28 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Text(
-                          'Already have an account?',
+                          FFLocalizations.of(context).getText(
+                            'uw6lr3oj' /* Already have an account? */,
+                          ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.pushAndRemoveUntil(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 150),
-                              reverseDuration: Duration(milliseconds: 150),
-                              child: LoginWidget(),
-                            ),
-                            (r) => false,
+                          context.goNamed(
+                            'Login',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 150),
+                              ),
+                            },
                           );
                         },
-                        text: 'Login',
+                        text: FFLocalizations.of(context).getText(
+                          '9qoe7ajl' /* Login */,
+                        ),
                         options: FFButtonOptions(
                           width: 100.0,
                           height: 40.0,
@@ -432,6 +442,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 10.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      GoRouter.of(context).prepareAuthEvent();
                       final user = await signInAnonymously(context);
                       if (user == null) {
                         return;
@@ -443,17 +454,22 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         userRole: 'Geek Master',
                       );
                       await currentUserReference!.update(usersUpdateData);
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.bottomToTop,
-                          duration: Duration(milliseconds: 250),
-                          reverseDuration: Duration(milliseconds: 250),
-                          child: NavBarPage(initialPage: 'chatMain'),
-                        ),
+
+                      context.pushNamedAuth(
+                        'chatMain',
+                        mounted,
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.bottomToTop,
+                            duration: Duration(milliseconds: 250),
+                          ),
+                        },
                       );
                     },
-                    text: 'Continue as Guest',
+                    text: FFLocalizations.of(context).getText(
+                      '7rnjylyk' /* Continue as Guest */,
+                    ),
                     options: FFButtonOptions(
                       width: 200.0,
                       height: 55.0,

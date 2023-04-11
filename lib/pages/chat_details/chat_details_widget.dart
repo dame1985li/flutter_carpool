@@ -4,7 +4,6 @@ import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/main.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -203,7 +202,9 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Job Title',
+                                FFLocalizations.of(context).getText(
+                                  'cnv863ii' /* Job Title */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -239,7 +240,9 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Employed Since',
+                                FFLocalizations.of(context).getText(
+                                  'w6yinjki' /* Employed Since */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -253,7 +256,11 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
                                     0.0, 8.0, 0.0, 0.0),
                                 child: Text(
                                   dateTimeFormat(
-                                      'MMMEd', columnUsersRecord.createdTime!),
+                                    'MMMEd',
+                                    columnUsersRecord.createdTime!,
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).titleSmall,
                                 ),
@@ -275,14 +282,15 @@ class _ChatDetailsWidgetState extends State<ChatDetailsWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            await Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.leftToRight,
-                duration: Duration(milliseconds: 200),
-                reverseDuration: Duration(milliseconds: 200),
-                child: NavBarPage(initialPage: 'chatMain'),
-              ),
+            context.pushNamed(
+              'chatMain',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.leftToRight,
+                  duration: Duration(milliseconds: 200),
+                ),
+              },
             );
           },
           child: Icon(

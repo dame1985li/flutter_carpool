@@ -45,7 +45,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
-            Navigator.pop(context);
+            context.pop();
           },
           child: Icon(
             Icons.chevron_left_rounded,
@@ -54,7 +54,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
           ),
         ),
         title: Text(
-          'Change Password',
+          FFLocalizations.of(context).getText(
+            '0qu9sg5g' /* Change Password */,
+          ),
           style: FlutterFlowTheme.of(context).headlineMedium,
         ),
         actions: [],
@@ -76,9 +78,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 controller: _model.emailAddressController,
                 obscureText: false,
                 decoration: InputDecoration(
-                  labelText: 'Your Email Address',
+                  labelText: FFLocalizations.of(context).getText(
+                    '9977w5ht' /* Your Email Address */,
+                  ),
                   labelStyle: FlutterFlowTheme.of(context).bodyMedium,
-                  hintText: 'Please enter a email...',
+                  hintText: FFLocalizations.of(context).getText(
+                    '5llfq4gk' /* Please enter a email... */,
+                  ),
                   hintStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Lexend Deca',
                         color: Color(0x98FFFFFF),
@@ -147,9 +153,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     email: _model.emailAddressController.text,
                     context: context,
                   );
-                  Navigator.pop(context);
+                  context.pop();
                 },
-                text: 'Send Reset Link',
+                text: FFLocalizations.of(context).getText(
+                  '9wwazr8v' /* Send Reset Link */,
+                ),
                 options: FFButtonOptions(
                   width: 230.0,
                   height: 60.0,

@@ -4,8 +4,6 @@ import '/components/empty_list/empty_list_widget.dart';
 import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/chat_details/chat_details_widget.dart';
-import '/pages/my_friends/my_friends_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -60,14 +58,15 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.bottomToTop,
-                  duration: Duration(milliseconds: 250),
-                  reverseDuration: Duration(milliseconds: 250),
-                  child: MyFriendsWidget(),
-                ),
+              context.pushNamed(
+                'MyFriends',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.bottomToTop,
+                    duration: Duration(milliseconds: 250),
+                  ),
+                },
               );
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -82,7 +81,9 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
             backgroundColor: FlutterFlowTheme.of(context).primary,
             automaticallyImplyLeading: false,
             title: Text(
-              'All Chats',
+              FFLocalizations.of(context).getText(
+                'f4845orx' /* All Chats */,
+              ),
               style: FlutterFlowTheme.of(context).displaySmall.override(
                     fontFamily: 'Lexend Deca',
                     color: FlutterFlowTheme.of(context).tertiary,
@@ -143,17 +144,26 @@ class _ChatMainWidgetState extends State<ChatMainWidget> {
                                 final chatInfo =
                                     snapshot.data ?? FFChatInfo(allChatsItem);
                                 return FFChatPreview(
-                                  onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ChatDetailsWidget(
-                                        chatUser:
-                                            chatInfo.otherUsers.length == 1
-                                                ? chatInfo.otherUsersList.first
-                                                : null,
-                                        chatRef: chatInfo.chatRecord.reference,
+                                  onTap: () => context.pushNamed(
+                                    'chatDetails',
+                                    queryParams: {
+                                      'chatUser': serializeParam(
+                                        chatInfo.otherUsers.length == 1
+                                            ? chatInfo.otherUsersList.first
+                                            : null,
+                                        ParamType.Document,
                                       ),
-                                    ),
+                                      'chatRef': serializeParam(
+                                        chatInfo.chatRecord.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'chatUser':
+                                          chatInfo.otherUsers.length == 1
+                                              ? chatInfo.otherUsersList.first
+                                              : null,
+                                    },
                                   ),
                                   lastChatText: chatInfo.chatPreviewMessage(),
                                   lastChatTime: allChatsItem.lastMessageTime,

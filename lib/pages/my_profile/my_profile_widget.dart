@@ -6,9 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/pages/change_password/change_password_widget.dart';
-import '/pages/edit_profile/edit_profile_widget.dart';
-import '/pages/login/login_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -353,7 +350,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Switch to Dark Mode',
+                                  FFLocalizations.of(context).getText(
+                                    'f9x3nzd6' /* Switch to Dark Mode */,
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).titleSmall,
                                 ),
@@ -453,7 +452,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Switch to Light Mode',
+                                  FFLocalizations.of(context).getText(
+                                    'i0kc3qgk' /* Switch to Light Mode */,
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).titleSmall,
                                 ),
@@ -531,7 +532,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 16.0, 0.0, 16.0),
                           child: Text(
-                            'Account Settings',
+                            FFLocalizations.of(context).getText(
+                              'fqiakyvt' /* Account Settings */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -576,16 +579,26 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                 ),
                                 child: InkWell(
                                   onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EditProfileWidget(
-                                          userEmail: myProfileUsersRecord,
-                                          userDisplay: myProfileUsersRecord,
-                                          userPhoto:
-                                              myProfileUsersRecord.reference,
+                                    context.pushNamed(
+                                      'editProfile',
+                                      queryParams: {
+                                        'userEmail': serializeParam(
+                                          myProfileUsersRecord,
+                                          ParamType.Document,
                                         ),
-                                      ),
+                                        'userDisplay': serializeParam(
+                                          myProfileUsersRecord,
+                                          ParamType.Document,
+                                        ),
+                                        'userPhoto': serializeParam(
+                                          myProfileUsersRecord.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'userEmail': myProfileUsersRecord,
+                                        'userDisplay': myProfileUsersRecord,
+                                      },
                                     );
                                   },
                                   child: Row(
@@ -595,7 +608,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 0.0, 0.0),
                                         child: Text(
-                                          'Edit Profile',
+                                          FFLocalizations.of(context).getText(
+                                            'zofgy95y' /* Edit Profile */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .titleSmall,
                                         ),
@@ -642,13 +657,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                               ),
                               child: InkWell(
                                 onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ChangePasswordWidget(),
-                                    ),
-                                  );
+                                  context.pushNamed('changePassword');
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -657,7 +666,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'Change Password',
+                                        FFLocalizations.of(context).getText(
+                                          '9luntnxa' /* Change Password */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall,
                                       ),
@@ -689,16 +700,15 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
+                                GoRouter.of(context).prepareAuthEvent();
                                 await signOut();
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginWidget(),
-                                  ),
-                                  (r) => false,
-                                );
+                                GoRouter.of(context).clearRedirectLocation();
+
+                                context.goNamedAuth('Login', mounted);
                               },
-                              text: 'Log Out',
+                              text: FFLocalizations.of(context).getText(
+                                '676k3v1a' /* Log Out */,
+                              ),
                               options: FFButtonOptions(
                                 width: 90.0,
                                 height: 40.0,

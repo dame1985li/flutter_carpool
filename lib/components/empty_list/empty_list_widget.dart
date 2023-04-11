@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/my_friends/my_friends_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +70,9 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'No Messages',
+                FFLocalizations.of(context).getText(
+                  'lcgo7051' /* No Messages */,
+                ),
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       fontFamily: 'Lexend Deca',
@@ -91,7 +92,9 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
             children: [
               Expanded(
                 child: Text(
-                  'Seems you don\'t have any messages here, search your friends list in order to get started.',
+                  FFLocalizations.of(context).getText(
+                    'jy4g2gep' /* Seems you don't have any messa... */,
+                  ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Lexend Deca',
@@ -108,17 +111,20 @@ class _EmptyListWidgetState extends State<EmptyListWidget> {
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
-              await Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.bottomToTop,
-                  duration: Duration(milliseconds: 220),
-                  reverseDuration: Duration(milliseconds: 220),
-                  child: MyFriendsWidget(),
-                ),
+              context.pushNamed(
+                'MyFriends',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.bottomToTop,
+                    duration: Duration(milliseconds: 220),
+                  ),
+                },
               );
             },
-            text: 'Find Friends',
+            text: FFLocalizations.of(context).getText(
+              'n67bfpjf' /* Find Friends */,
+            ),
             options: FFButtonOptions(
               width: 170.0,
               height: 50.0,
